@@ -1,0 +1,396 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-color-light: #f5f7fa;
+  --text-color-light: #000000;
+  --bg-color-dark: #121620;
+  --text-color-dark: #ffffff;
+  --hover-color: #a855f7; /* Purple Canva */
+  --navbar-light: #ffffff;
+  --navbar-dark: #1e293b;
+}
+
+html {
+  background-color: var(--bg-color-light);
+  color: var(--text-color-light);
+  transition: background-color 0.3s, color 0.3s;
+  position: relative;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+html.dark {
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-dark);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Background animated elements */
+.animated-bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.animated-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  animation: float 20s infinite ease-in-out;
+}
+
+.shape-1 {
+  width: 450px;
+  height: 450px;
+  background: rgba(168, 85, 247, 0.5);
+  top: 10%;
+  left: -5%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 400px;
+  height: 400px;
+  background: rgba(56, 189, 248, 0.5);
+  top: 50%;
+  right: -10%;
+  animation-delay: -5s;
+}
+
+.shape-3 {
+  width: 350px;
+  height: 350px;
+  background: rgba(236, 72, 153, 0.5);
+  bottom: -5%;
+  left: 25%;
+  animation-delay: -10s;
+}
+
+.dark .shape-1 {
+  background: rgba(168, 85, 247, 0.15);
+}
+
+.dark .shape-2 {
+  background: rgba(56, 189, 248, 0.15);
+}
+
+.dark .shape-3 {
+  background: rgba(236, 72, 153, 0.15);
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(50px, 50px) scale(1.05);
+  }
+  66% {
+    transform: translate(-30px, 20px) scale(0.95);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    max-height: 300px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    max-height: 300px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+nav {
+  transition: background-color 0.3s, color 0.3s;
+  background-color: var(--navbar-light) !important;
+}
+
+html.dark nav {
+  background-color: var(--navbar-dark) !important;
+}
+
+/* Navbar specific button styles */
+nav button, nav a {
+  background-color: transparent;
+  color: var(--text-color-light);
+  font-weight: bold;
+  transition: color 0.3s, background-color 0.3s;
+  text-decoration: none;
+  position: relative;
+}
+
+/* Adding visible hover effect with underline */
+nav button:hover, nav a:hover {
+  color: var(--hover-color);
+}
+
+/* Add underline animation on hover for nav items */
+nav button:not(.p-2):hover::after, 
+nav a:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--hover-color);
+  transition: width 0.2s ease;
+}
+
+/* Dark mode specific styles */
+html.dark nav button, html.dark nav a {
+  color: var(--text-color-dark);
+}
+
+html.dark nav button:hover, html.dark nav a:hover {
+  color: var(--hover-color);
+}
+
+/* Add specific hover behavior for the dropdown menu items */
+nav .absolute button:hover {
+  color: var(--hover-color);
+}
+
+/* Adding visible hover effect for dropdown items */
+nav .absolute button:hover {
+  background-color: rgba(168, 85, 247, 0.1); /* Semi-transparent hover background */
+}
+
+html.dark nav .absolute button:hover {
+  background-color: rgba(168, 85, 247, 0.2); /* More visible in dark mode */
+}
+
+/* Icon buttons in navbar (like dark mode toggle) should have visible hover effect */
+nav button.rounded-full:hover {
+  background-color: rgba(168, 85, 247, 0.2) !important;
+  transform: scale(1.05);
+}
+
+/* Regular buttons with themed hover effects */
+button:not(nav button) {
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+/* Theme-specific buttons */
+.btn-primary-purple {
+  @apply bg-purple-600 text-white rounded-full shadow-md;
+  transition: all 0.3s ease;
+}
+
+.btn-primary-purple:hover {
+  @apply bg-white text-purple-600 shadow-lg;
+  text-decoration: none;
+}
+
+.dark .btn-primary-purple {
+  @apply bg-purple-600 text-white;
+}
+
+.dark .btn-primary-purple:hover {
+  @apply bg-gray-800 text-purple-400;
+  text-decoration: none;
+}
+
+.btn-primary-blue {
+  @apply bg-blue-600 text-white rounded-full shadow-md;
+  transition: all 0.3s ease;
+}
+
+.btn-primary-blue:hover {
+  @apply bg-white text-blue-600 shadow-lg;
+  text-decoration: none;
+}
+
+.dark .btn-primary-blue {
+  @apply bg-blue-600 text-white;
+}
+
+.dark .btn-primary-blue:hover {
+  @apply bg-gray-800 text-blue-400;
+  text-decoration: none;
+}
+
+.btn-primary-yellow {
+  @apply bg-yellow-600 text-white rounded-full shadow-md;
+  transition: all 0.3s ease;
+}
+
+.btn-primary-yellow:hover {
+  @apply bg-white text-yellow-600 shadow-lg;
+  text-decoration: none;
+}
+
+.dark .btn-primary-yellow {
+  @apply bg-yellow-600 text-white;
+}
+
+.dark .btn-primary-yellow:hover {
+  @apply bg-gray-800 text-yellow-400;
+  text-decoration: none;
+}
+
+.btn-primary-pink {
+  @apply bg-pink-600 text-white rounded-full shadow-md;
+  transition: all 0.3s ease;
+}
+
+.btn-primary-pink:hover {
+  @apply bg-white text-pink-600 shadow-lg;
+  text-decoration: none;
+}
+
+.dark .btn-primary-pink {
+  @apply bg-pink-600 text-white;
+}
+
+.dark .btn-primary-pink:hover {
+  @apply bg-gray-800 text-pink-400;
+  text-decoration: none;
+}
+
+.btn-secondary {
+  @apply bg-white text-gray-800 border border-gray-300 rounded-full;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  @apply bg-gray-800 text-white;
+  text-decoration: none;
+}
+
+.dark .btn-secondary {
+  @apply bg-gray-800 text-gray-200 border-gray-700;
+}
+
+.dark .btn-secondary:hover {
+  @apply bg-white text-gray-800;
+  text-decoration: none;
+}
+
+/* Only disable underline on specific elements */
+.no-underline:hover {
+  text-decoration: none !important;
+}
+
+/* Section styling for full-page vertical scrolling */
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  scroll-margin-top: 4rem; /* Ensures scrolling positions correctly with fixed navbar */
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+  cursor: pointer;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-20px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Ensure the footer stays at the bottom */
+.min-h-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
