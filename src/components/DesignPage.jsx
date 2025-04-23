@@ -93,7 +93,7 @@ function DesignPage() {
 
       {/* Templates Section with improved horizontal scrolling and visible navigation arrows */}
       <div className="w-full mb-16">
-        <div className="flex justify-between items-center mb-6 px-4">
+        <div className="flex justify-center items-center mb-6 px-4">
           <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
             Templates for you
           </h2>
